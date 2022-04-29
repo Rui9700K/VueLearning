@@ -2,7 +2,7 @@
 <div id="root">
   <div class="todo-container">
     <div class="todo-wrap">
-      <HeaderInput @receive="receive"></HeaderInput><!-- 给子元素传一个函数，用于获取子元素的数据 -->
+      <HeaderInput :receive="receive"></HeaderInput><!-- 给子元素传一个函数，用于获取子元素的数据 -->
       <BodyList 
       :todoObj = "todos" 
       :checkTodo="checkTodo" 
@@ -10,12 +10,12 @@
       ></BodyList>
       <FooterBox 
       :todoObj = "todos" 
-      @deleteDone="deleteDone"
+      :deleteDone="deleteDone"
       ></FooterBox>
     </div>
   </div>
 </div>
-</template> 
+</template>
 
 <script>
 //引入

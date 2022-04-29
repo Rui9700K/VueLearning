@@ -8,13 +8,14 @@
 import {nanoid} from 'nanoid'
 export default {
     name:"HeaderInput",
+    props: ['receive'],
     methods:{
         add(event){
             if (!event.target.value.trim()) return
             //将用户输入包装成一个todo对象
             const todoObj = {id:nanoid(),title:event.target.value.trim(),done:false}
             //通知app组件去添加对象
-            this.$emit('receive',todoObj)
+            this.receive(todoObj)
             //清空输入
             event.target.value = ''
         }

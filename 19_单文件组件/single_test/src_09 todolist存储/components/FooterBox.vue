@@ -3,7 +3,7 @@
     <span>
         <span>已完成{{doneTotal}}</span> / 全部{{totalTodos}}
     </span>
-    <button class="btn btn-danger" @click="done">清除已完成任务</button>
+    <button class="btn btn-danger" @click="deleteDone">清除已完成任务</button>
 </div>
 </template>
 
@@ -25,17 +25,7 @@ export default {
         isAll(){
             return this.doneTotal === this.totalTodos
         },
-    
     },
-    methods:{
-        done(){
-            if(this.doneTotal !=0){
-                this.$emit('deleteDone')
-            }else{
-                alert("你根本没完成任何事件！")
-            }
-        }
-    }
 }
 </script>
 
