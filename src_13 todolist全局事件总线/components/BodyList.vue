@@ -4,8 +4,6 @@
         v-for="todo in todoObj" 
         :key="todo.id" 
         :todoObj="todo" 
-        :checkTodo="checkTodo"
-        :deleteTodo="deleteTodo"
     ></BodyItem>
 </ul>
 </template>
@@ -17,7 +15,7 @@ export default {
     components:{
         BodyItem,
     },
-    props:['todoObj','checkTodo','deleteTodo'],
+    props:['todoObj'],
 }
 </script>
 

@@ -46,7 +46,7 @@ https://cli.vuejs.org/zh/config/
                 methods:{....},
                 ....
             }
-        第第二步使用混入，例如：
+        第二步使用混入，例如：
             (1).全局混入：Vue.mixin(xxx)
             (2).局部混入：mixins:['xxx']
 
@@ -93,3 +93,62 @@ https://cli.vuejs.org/zh/config/
 ## webStorage
 通过 sessionStorage（本次会话，关掉就没了） 和 localStorage（本地存储，手动清空） 实现本地存储
 
+## 全局事件总线：任意组件间通信
+适用于任何组件间的通信
+
+new Vue({
+    beforeCreate(){
+        Vue.prototype.$bus = this //安装事件总线
+    }
+})
+
+methods(){
+    demo(data){...}
+}
+...
+mounted(){
+    this.$bus.$on('xxx',this.demo)
+}
+
+提供数据：this.$bus.$emit('xxx',数据)
+
+## 消息订阅与发布
+1.安装消息订阅与发布的库
+    安装pubsub
+2.引入 import pubsub from 'pubsub-js'
+3.接收数据  pubsub.subscribe('xxx',this.demo)
+4.提供数据  pubsub.publish('xxx',数据)
+5.最好在beforeDestroy钩子中去取消订阅（设定pid是接收sub的实例对象，通过pid销毁）
+
+## nexTick
+this.$nexTick(回调函数)
+在下一次DOM更新结束后执行回调
+
+## Vue封装的过渡与动画
+在插入/更新/移除 DOM元素时 在合适的时候给元素添加样式类名
+
+v-enter 进入起点 v-enter-to 进入终点 v-enter-active 进入过程中
+v-leave 离开起点 v-leave-to 离开终点 v-leave-active 离开过程中
+
+## Vue跨域请求
+module.exports = {
+  devServer: {
+    proxy: 'http://localhost:4000'
+  }
+} 简单配置
+
+module.exports = {
+  devServer: {
+    proxy: {
+      '/api': {
+        target: '<url>', //简单地址，如果是全名地址，则请求地址只写到/api即可
+        pathRewrite:{'^/api':''}, //重写地址
+        ws: true,
+        changeOrigin: true
+      },
+      '/foo': {
+        target: '<other_url>'
+      }
+    }
+  }
+}//复杂配置

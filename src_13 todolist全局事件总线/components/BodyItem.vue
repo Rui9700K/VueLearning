@@ -14,17 +14,17 @@
 export default {
     name:"BodyItem",
     //声明接受todoObj对象
-    props: ['todoObj','checkTodo','deleteTodo'],
+    props: ['todoObj'],
     methods:{
         //勾选or取消勾选
         handleCheck(id){
             //通知APP组件将对应的todo对象取反
-            this.checkTodo(id);
+            this.$bus.$emit('checkTodo',id)
         },
         handleDelete(id){
             if(confirm('确定删除该任务吗？')){
                 //通知APP删除id对应事件
-                this.deleteTodo(id)
+                this.$bus.$emit('deleteTodo',id)
             }
         }
     }
