@@ -33,7 +33,7 @@ export default {
       pubsub.publish('sendLoading',true)
 
       //发送请求
-      axios.get(`https://api.github.com/search/users?q=${this.keyWord}`).then(
+      this.$http.get(`https://api.github.com/search/users?q=${this.keyWord}`).then(
         response => {
           pubsub.publish('sendLoading',false)
           console.log('成功了',response.data.items);

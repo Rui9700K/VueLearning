@@ -4,10 +4,6 @@ import Vue from 'vue'
 //引入App
 import App from './App'
 
-//引入bootstrap
-import 'bootstrap'
-import $ from 'jquery'
-
 Vue.config.productionTip = false
 
 /* const Demo = Vue.extend({})
